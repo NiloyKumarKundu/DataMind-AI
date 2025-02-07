@@ -1,33 +1,97 @@
-# Chat With Your Excel Files
+# DataMind AI - Chat with Excel
 
-This repository provides a comprehensive Streamlit application designed to enhance your interaction with Excel files. By leveraging the power of Streamlit, Pandas AI, Langchain Groq, LLAMA3 the application allows users to upload, view, and manipulate Excel files directly through a web interface, making data analysis more accessible and user-friendly. Whether you're a data analyst, a business professional, or simply someone who frequently works with Excel, this tool simplifies your workflow and provide powerful features to handle your data efficiently.
+## Overview
 
-## Getting Started
+DataMind AI is a Streamlit-based AI application designed to process and analyze Excel files interactively. It is deployed using Docker and runs within the same network as `mlhub.space`, utilizing a wildcard domain for easy access.
 
-To get started with the application, follow these steps:
+## Deployment and Access
 
-1. **Clone the Repository**: Begin by cloning the repository to your local machine using the following command:
-   ```bash
-   git clone https://github.com/NiloyKumarKundu/DataMind-AI.git
-   ```
-2. **Install Dependencies**: Navigate to the project directory and install the required dependencies.
-   This can typically be done using pip:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. **Run the Application**: Start the Streamlit application by running the following command:
-   ```bash
-   streamlit run app.py
-   ```
+This project is configured to run within the `llm_network`, allowing seamless interaction with other services in the ML Hub ecosystem. It is accessible through the subdomain:
 
-## Design
+      datamindai.mlhub.space
 
-![OpenAI Logo](images/1.jpeg)
+If you want to learn more about `llm_network`, please follow [mlhub.space](https://github.com/NiloyKumarKundu/mlhub.space).
 
-![OpenAI Logo](images/2.jpeg)
+## Prerequisites
 
-![OpenAI Logo](images/3.jpeg)
+Ensure the following dependencies are installed:
 
-![OpenAI Logo](images/4.jpeg)
+- [Docker](https://docs.docker.com/get-started/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+- A wildcard DNS record for `*.mlhub.space`
 
-![OpenAI Logo](images/5.jpeg)
+## Setup
+
+1.  **Clone the Repository:**
+
+    ```
+    git clone https://github.com/NiloyKumarKundu/DataMind-AI.git
+    cd datamind-ai
+    ```
+
+2.  **Create a .env File:** Define the required environment variables in the project root:
+
+    ```
+    STREAMLIT_SERVER_ADDRESS=0.0.0.0
+    STREAMLIT_SERVER_PORT=8503
+    VIRTUAL_HOST=datamindai.mlhub.space
+    GROQ_API_KEY=your_groq_api_key
+    ```
+
+3.  **Build and Start the Container:**
+
+         docker-compose --env-file .env up --build -d
+
+## Services
+
+### DataMind AI (Streamlit App)
+
+- **Build Context:** `./chatExcel`
+
+- **Environment Variables:**
+
+  - `STREAMLIT_SERVER_ADDRESS:` Server binding address.
+
+  - `STREAMLIT_SERVER_PORT:` Port for Streamlit UI.
+
+  - `VIRTUAL_HOST:` Subdomain for routing traffic.
+
+  - `GROQ_API_KEY:` API key for external integrations.
+
+- **Network:** Runs on `llm_network` to interact with other LLM services.
+
+- **Restart Policy:** Always ensures automatic recovery from failures.
+
+## Managing the Deployment
+
+#### Start the Service
+
+      docker-compose --env-file .env up -d
+
+#### Stop the Service
+
+      docker-compose --env-file .env down
+
+#### View Logs
+
+      docker-compose logs -f
+
+#### Rebuild the Service
+
+      docker-compose --env-file .env up --build -d
+
+## Notes
+
+- Ensure the wildcard domain (`*.mlhub.space`) is correctly configured to route traffic.
+
+- The `GROQ_API_KEY` should be set for proper API integration.
+
+- The `datamind-ai` service is configured to restart automatically in case of failures.
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+For any issues, please open a GitHub issue or contact: niloykk.connect@gmail.com

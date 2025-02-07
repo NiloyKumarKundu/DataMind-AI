@@ -32,9 +32,9 @@ Ensure the following dependencies are installed:
 2.  **Create a .env File:** Define the required environment variables in the project root:
 
     ```
-    STREAMLIT_SERVER_ADDRESS=0.0.0.0
-    STREAMLIT_SERVER_PORT=8503
-    VIRTUAL_HOST=datamindai.mlhub.space
+    STREAMLIT_SERVER_ADDRESS=your_streamlit_server_address
+    STREAMLIT_SERVER_PORT=your_streamlit_server_port
+    VIRTUAL_HOST=your_domain (e.g. datamindai.mlhub.space)
     GROQ_API_KEY=your_groq_api_key
     ```
 
@@ -79,6 +79,16 @@ Ensure the following dependencies are installed:
 #### Rebuild the Service
 
       docker-compose --env-file .env up --build -d
+
+## Screenshots
+
+Include relevant screenshots of the application interface to help visualize the system in action.
+
+![screenshot -1](images/1.jpeg)
+![screenshot -2](images/2.jpeg)
+![screenshot -3](images/3.jpeg)
+![screenshot -4](images/4.jpeg)
+![screenshot -5](images/5.jpeg)
 
 ## Notes
 
